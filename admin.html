@@ -762,6 +762,10 @@ function showConfigTab(tab){
     sobre:`<div class="config-section"><h3>Seção Sobre</h3>
       <div class="form-group"><label>Título</label><input id="cfgAboutTitle" value="${c.aboutTitle}"/></div>
       <div class="form-group"><label>Texto</label><textarea id="cfgAboutText" rows="6">${c.aboutText}</textarea></div>
+      <div class="form-group"><label>Ponto 1</label><input id="cfgAboutLi1" value="${c.aboutLi1||''}"/></div>
+      <div class="form-group"><label>Ponto 2</label><input id="cfgAboutLi2" value="${c.aboutLi2||''}"/></div>
+      <div class="form-group"><label>Ponto 3</label><input id="cfgAboutLi3" value="${c.aboutLi3||''}"/></div>
+      <div class="form-group"><label>Ponto 4</label><input id="cfgAboutLi4" value="${c.aboutLi4||''}"/></div>
       <button class="btn btn-primary" onclick="saveConfigSection('sobre')"><i class="fas fa-save"></i> Salvar Sobre</button>
     </div>`,
     contato:`<div class="config-section"><h3>Informações de Contato</h3>
@@ -844,6 +848,10 @@ function saveConfigSection(section){
   } else if(section==='sobre'){
     d.config.aboutTitle=document.getElementById('cfgAboutTitle').value;
     d.config.aboutText=document.getElementById('cfgAboutText').value;
+    d.config.aboutLi1=document.getElementById('cfgAboutLi1').value;
+    d.config.aboutLi2=document.getElementById('cfgAboutLi2').value;
+    d.config.aboutLi3=document.getElementById('cfgAboutLi3').value;
+    d.config.aboutLi4=document.getElementById('cfgAboutLi4').value;
   } else if(section==='contato'){
     d.config.whatsapp=document.getElementById('cfgWpp').value;
     d.config.fixo=document.getElementById('cfgFixo').value;

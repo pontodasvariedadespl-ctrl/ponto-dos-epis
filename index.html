@@ -112,7 +112,7 @@
   .about{padding:96px 0;background:var(--white)}
   .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
   .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--green-mid),var(--green-light));min-height:420px;display:flex;align-items:center;justify-content:center}
-  .about-img-box img{width:75%;margin:auto;filter:drop-shadow(0 16px 32px rgba(0,0,0,.3))}
+  .about-img-box img{width:100%;height:100%;object-fit:contain;margin:auto;filter:drop-shadow(0 16px 32px rgba(0,0,0,.3))}
   .about-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border-radius:16px;padding:20px 24px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:14px}
   .about-badge-float .icon{width:48px;height:48px;background:var(--green-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--green-main)}
   .about-badge-float strong{display:block;font-size:1.3rem;font-weight:900;color:var(--green-dark)}
@@ -183,7 +183,7 @@
   /* FOOTER */
   footer{background:var(--green-dark);color:var(--white);padding:64px 0 0}
   .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px}
-  .footer-logo{width:auto;margin-bottom:16px}
+  .footer-logo{width:auto;margin-bottom:16px;mix-blend-mode:screen}
   .footer-tagline{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7;max-width:280px;margin-bottom:24px}
   .social-links{display:flex;gap:12px}
   .social-link{width:40px;height:40px;background:rgba(255,255,255,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--white);transition:var(--transition)}
@@ -286,8 +286,8 @@
     <ul class="nav-links">
       <li><a href="#inicio">Início</a></li>
       <li><a href="#categorias">Categorias</a></li>
-      <li><a href="#sobre">Sobre</a></li>
       <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#sobre">Sobre</a></li>
       <li><a href="#contato">Contato</a></li>
       <li><a href="https://wa.me/5565984728239" target="_blank" class="nav-cta"><i class="fab fa-whatsapp"></i> Fale Conosco</a></li>
     </ul>
@@ -299,8 +299,8 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#inicio" onclick="toggleMenu()">Início</a>
   <a href="#categorias" onclick="toggleMenu()">Categorias</a>
-  <a href="#sobre" onclick="toggleMenu()">Sobre</a>
   <a href="#galeria" onclick="toggleMenu()">Galeria</a>
+  <a href="#sobre" onclick="toggleMenu()">Sobre</a>
   <a href="#contato" onclick="toggleMenu()">Contato</a>
   <a href="https://wa.me/5565984728239" target="_blank" style="color:#25d366;font-weight:700"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
 </div>
@@ -413,12 +413,7 @@
           Com o tempo, identificamos as necessidades do mercado local e expandimos nosso mix de produtos.
           Hoje, contamos com mais de <strong>43.000 itens</strong> em diversas categorias.
         </p>
-        <ul class="about-list">
-          <li><i class="fas fa-check-circle"></i> Fundada com foco em EPI e segurança do trabalho</li>
-          <li><i class="fas fa-check-circle"></i> Crescimento guiado pelas necessidades dos clientes</li>
-          <li><i class="fas fa-check-circle"></i> Mais de 43.000 produtos em 8 categorias</li>
-          <li><i class="fas fa-check-circle"></i> Atendimento humano e próximo há 14 anos</li>
-        </ul>
+        <ul class="about-list" id="aboutList"></ul>
       </div>
     </div>
   </div>
@@ -584,6 +579,10 @@ var DEFAULT_CFG = {
   heroDesc:'Da proteção individual ao acabamento da obra, do jardim à casa — a Ponto dos EPI\'s tem mais de 43.000 produtos para atender você, sua empresa e sua família.',
   aboutTitle:'14 anos cuidando de você e da sua família',
   aboutText:'A Ponto dos EPI\'s nasceu com uma missão clara: oferecer os melhores equipamentos de proteção individual para trabalhadores e empresas de Pontes e Lacerda - MT.',
+  aboutLi1:'Fundada com foco em EPI e segurança do trabalho',
+  aboutLi2:'Crescimento guiado pelas necessidades dos clientes',
+  aboutLi3:'Mais de 43.000 produtos em 8 categorias',
+  aboutLi4:'Atendimento humano e próximo há 14 anos',
   phone:'(65) 98472-8239', fixo:'(65) 3266-5022',
   address:'Av. Bom Jesus, 1648-A – Centro', city:'Pontes e Lacerda - MT', cep:'78250-000',
   horaSemana:'07:00 às 18:00', horaSabado:'07:00 às 17:00',
@@ -605,6 +604,11 @@ function init(){
   if(cfg.heroDesc) document.getElementById('heroDesc').innerHTML=''+cfg.heroDesc;
   if(cfg.aboutTitle) document.getElementById('aboutTitle').textContent=cfg.aboutTitle;
   if(cfg.aboutText) document.getElementById('aboutText').innerHTML=cfg.aboutText;
+  (function(){
+    var ul=document.getElementById('aboutList'); if(!ul) return;
+    var items=[cfg.aboutLi1,cfg.aboutLi2,cfg.aboutLi3,cfg.aboutLi4];
+    ul.innerHTML=items.map(function(t){return t?'<li><i class="fas fa-check-circle"></i> '+t+'</li>':'';}).join('');
+  })();
   var wpp=cfg.whatsapp||'5565984728239';
   var wppHref='https://wa.me/'+wpp;
   document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){el.href=wppHref;});
