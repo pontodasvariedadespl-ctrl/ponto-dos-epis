@@ -112,7 +112,7 @@
   .about{padding:96px 0;background:var(--white)}
   .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
   .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--green-mid),var(--green-light));min-height:420px;display:flex;align-items:center;justify-content:center}
-  .about-img-box img{width:100%;height:100%;object-fit:contain;margin:auto;filter:drop-shadow(0 16px 32px rgba(0,0,0,.3))}
+  .about-img-box img{width:100%;height:100%;object-fit:contain;margin:auto;mix-blend-mode:screen;filter:drop-shadow(0 16px 32px rgba(0,0,0,.3))}
   .about-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border-radius:16px;padding:20px 24px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:14px}
   .about-badge-float .icon{width:48px;height:48px;background:var(--green-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--green-main)}
   .about-badge-float strong{display:block;font-size:1.3rem;font-weight:900;color:var(--green-dark)}
@@ -208,40 +208,40 @@
   .reveal.visible{opacity:1;transform:translateY(0)}
 
   /* ── MODAL ── */
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
-  .modal-overlay.open{display:flex}
-  .modal-box{background:var(--white);border-radius:20px;max-width:880px;width:100%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;animation:modalIn .3s ease}
-  @keyframes modalIn{from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}
-  .modal-head{padding:22px 28px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-  .modal-head h3{font-size:1.2rem;font-weight:800;color:var(--green-dark)}
-  .modal-head p{font-size:.82rem;color:var(--gray-text);margin-top:3px}
-  .modal-close{width:34px;height:34px;background:#f1f3f5;border:none;border-radius:50%;cursor:pointer;font-size:.95rem;color:var(--gray-text);transition:.2s}
-  .modal-close:hover{background:var(--green-main);color:var(--white)}
-  .modal-body{padding:24px 28px;overflow-y:auto;flex:1}
+  /* ── Detail Pages (category & gallery) ─────────────────────────────── */
+  .detail-page{position:fixed;inset:0;z-index:2000;background:#f4f6f8;overflow-y:auto;transform:translateX(100%);transition:transform .38s cubic-bezier(.4,0,.2,1)}
+  .detail-page.open{transform:translateX(0)}
+  .detail-header{background:var(--white);padding:16px 28px;display:flex;align-items:center;gap:16px;border-bottom:2px solid #eef0f2;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  .detail-back{width:42px;height:42px;border-radius:50%;border:none;background:var(--green-main);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s;box-shadow:0 3px 10px rgba(14,120,50,.3)}
+  .detail-back:hover{background:var(--green-dark);transform:scale(1.08)}
+  .detail-header-info h3{font-size:1.25rem;font-weight:800;color:var(--green-dark)}
+  .detail-header-info p{font-size:.82rem;color:var(--gray-text);margin-top:2px}
+  .detail-content{padding:32px 28px;max-width:1200px;margin:0 auto}
 
-  /* Products grid */
-  .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
-  .prod-card{background:var(--gray-bg);border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s;border:2px solid transparent}
-  .prod-card:hover{border-color:var(--green-main);transform:translateY(-3px)}
-  .prod-thumb{height:120px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#e0e0e0}
-  .prod-thumb img{width:100%;height:100%;object-fit:cover}
-  .prod-thumb i{font-size:2rem;color:#bbb}
-  .prod-info{padding:10px 12px}
-  .prod-info h4{font-size:.82rem;font-weight:700;color:var(--green-dark)}
-  .prod-info span{font-size:.75rem;color:var(--gray-text)}
-  .prod-price{color:var(--green-main);font-weight:700;font-size:.82rem;margin-top:3px}
+  /* Category cards 1:1 */
+  .cat-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px}
+  .cat-detail-card{cursor:pointer;transition:.2s}
+  .cat-detail-card:hover{transform:translateY(-4px)}
+  .cat-detail-img{aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#eef0f2;box-shadow:0 4px 18px rgba(0,0,0,.10);display:flex;align-items:center;justify-content:center;transition:box-shadow .25s}
+  .cat-detail-card:hover .cat-detail-img{box-shadow:0 14px 36px rgba(14,120,50,.18)}
+  .cat-detail-img img{width:100%;height:100%;object-fit:cover}
+  .cat-detail-img i{font-size:3rem;color:#bbb}
+  .cat-detail-info{margin-top:12px;padding:0 4px}
+  .cat-detail-info h4{font-size:1rem;font-weight:700;color:var(--green-dark);margin-bottom:3px}
+  .cat-detail-info span{font-size:.82rem;color:var(--gray-text);line-height:1.5}
+  .cat-detail-price{margin-top:6px;font-size:1rem;font-weight:800;color:var(--green-main)}
 
-  /* Photo grid */
-  .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
-  .photo-thumb{aspect-ratio:9/16;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;background:var(--green-dark)}
-  .photo-thumb img{width:100%;height:100%;object-fit:cover;transition:.3s}
-  .photo-thumb:hover img{transform:scale(1.06)}
-  .photo-thumb iframe{width:100%;height:100%;border:none;pointer-events:none}
-  .photo-caption{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.65);color:#fff;font-size:.7rem;padding:5px 7px;transform:translateY(100%);transition:.3s}
-  .photo-thumb:hover .photo-caption{transform:translateY(0)}
+  /* Gallery cards 9:16 */
+  .gal-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px}
+  .gal-detail-card{cursor:pointer}
+  .gal-detail-card:hover .gal-detail-media{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.22)}
+  .gal-detail-media{aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:var(--green-dark);box-shadow:0 4px 18px rgba(0,0,0,.14);transition:transform .25s,box-shadow .25s}
+  .gal-detail-media img{width:100%;height:100%;object-fit:cover}
+  .gal-detail-media iframe{width:100%;height:100%;border:none;pointer-events:none}
+  .gal-detail-caption{margin-top:10px;font-size:.85rem;color:var(--gray-text);text-align:center;font-weight:500;padding:0 4px}
 
-  .empty-msg{text-align:center;padding:40px;color:var(--gray-text)}
-  .empty-msg i{font-size:2.5rem;margin-bottom:12px;display:block;opacity:.35}
+  .empty-msg{text-align:center;padding:60px 20px;color:var(--gray-text)}
+  .empty-msg i{font-size:3rem;margin-bottom:16px;display:block;opacity:.3}
 
   /* LIGHTBOX */
   .lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:3000;align-items:center;justify-content:center}
@@ -271,8 +271,8 @@
   }
   @media(max-width:480px){
     .dif-grid{grid-template-columns:1fr}.categories-grid{grid-template-columns:repeat(2,1fr)}
-    .gallery-grid{grid-template-columns:repeat(2,1fr)}.prod-grid{grid-template-columns:1fr 1fr}
-    .photo-grid{grid-template-columns:1fr 1fr}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    .gal-detail-grid{grid-template-columns:repeat(2,1fr)}.cat-detail-grid{grid-template-columns:repeat(2,1fr)}
   }
 </style>
 </head>
@@ -522,26 +522,28 @@
   <span class="float-wpp-tooltip">Falar no WhatsApp</span>
 </a>
 
-<!-- Category Modal -->
-<div class="modal-overlay" id="catModal" onclick="closeCatModal(event)">
-  <div class="modal-box">
-    <div class="modal-head">
-      <div><h3 id="catModalTitle"></h3><p id="catModalDesc"></p></div>
-      <button class="modal-close" onclick="closeCatModal()"><i class="fas fa-times"></i></button>
+<!-- Category Detail Page -->
+<div class="detail-page" id="catDetail">
+  <div class="detail-header">
+    <button class="detail-back" onclick="closeCatDetail()"><i class="fas fa-arrow-left"></i></button>
+    <div class="detail-header-info">
+      <h3 id="catDetailTitle"></h3>
+      <p id="catDetailDesc"></p>
     </div>
-    <div class="modal-body"><div class="prod-grid" id="prodGrid"></div></div>
   </div>
+  <div class="detail-content"><div class="cat-detail-grid" id="catDetailGrid"></div></div>
 </div>
 
-<!-- Gallery Modal -->
-<div class="modal-overlay" id="galModal" onclick="closeGalModal(event)">
-  <div class="modal-box">
-    <div class="modal-head">
-      <div><h3 id="galModalTitle"></h3><p id="galModalCount"></p></div>
-      <button class="modal-close" onclick="closeGalModal()"><i class="fas fa-times"></i></button>
+<!-- Gallery Detail Page -->
+<div class="detail-page" id="galDetail">
+  <div class="detail-header">
+    <button class="detail-back" onclick="closeGalDetail()"><i class="fas fa-arrow-left"></i></button>
+    <div class="detail-header-info">
+      <h3 id="galDetailTitle"></h3>
+      <p id="galDetailCount"></p>
     </div>
-    <div class="modal-body"><div class="photo-grid" id="photoGrid"></div></div>
   </div>
+  <div class="detail-content"><div class="gal-detail-grid" id="galDetailGrid"></div></div>
 </div>
 
 <!-- Lightbox -->
@@ -610,7 +612,7 @@ function init(){
     ul.innerHTML=items.map(function(t){return t?'<li><i class="fas fa-check-circle"></i> '+t+'</li>':'';}).join('');
   })();
   var wpp=cfg.whatsapp||'5565984728239';
-  var wppHref='https://wa.me/'+wpp;
+  var wppHref=(wpp.indexOf('http')===0)?wpp:('https://wa.me/'+wpp);
   document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){el.href=wppHref;});
   if(cfg.phone){var e=document.getElementById('ctaWpp');if(e){e.textContent=cfg.phone;e.href=wppHref;}}
   if(cfg.fixo){var e2=document.getElementById('ctaPhone');if(e2){e2.textContent=cfg.fixo;e2.href='tel:+'+cfg.fixo.replace(/\D/g,'');}}
@@ -646,7 +648,7 @@ function renderCategories(cats){
     var coverHtml=c.coverImg
       ?'<img class="cat-cover-img" src="'+c.coverImg+'" alt="'+c.name+'">'
       :'<div class="cat-cover-placeholder"><i class="'+( c.icon||'fas fa-box')+'" style="font-size:2.5rem;color:rgba(255,255,255,.5)"></i></div>';
-    return '<div class="cat-card reveal" onclick="openCatModal(\''+c.id+'\')">'+
+    return '<div class="cat-card reveal" onclick="openCatDetail(\''+c.id+'\')">'+
       coverHtml+
       '<div class="cat-card-body">'+
         '<div class="cat-icon"><i class="'+(c.icon||'fas fa-box')+'"></i></div>'+
@@ -671,7 +673,7 @@ function renderGallery(gals){
     var igBtn=g.instagram
       ?'<a href="'+g.instagram+'" class="gallery-ig-btn" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-instagram"></i> Instagram</a>'
       :'';
-    return '<div class="gallery-item reveal" onclick="openGalModal(\''+g.id+'\')">'+
+    return '<div class="gallery-item reveal" onclick="openGalDetail(\''+g.id+'\')">'+
       thumbHtml+
       '<div class="gallery-overlay">'+
         '<div class="gallery-item-title">'+g.title+'</div>'+
@@ -683,62 +685,68 @@ function renderGallery(gals){
   initReveal();
 }
 
-function openCatModal(catId){
+function openCatDetail(catId){
   var d=getData();
   var cats=(d&&d.categories&&d.categories.length)?d.categories:DEFAULT_CATS;
   var cat=cats.find(function(c){return c.id===catId;});
   if(!cat)return;
-  document.getElementById('catModalTitle').textContent=cat.name;
-  document.getElementById('catModalDesc').textContent=cat.desc||'';
-  var grid=document.getElementById('prodGrid');
+  document.getElementById('catDetailTitle').textContent=cat.name;
+  document.getElementById('catDetailDesc').textContent=cat.desc||'';
+  var grid=document.getElementById('catDetailGrid');
   var prods=cat.products||[];
   if(!prods.length){
-    grid.innerHTML='<div class="empty-msg"><i class="fas fa-box-open"></i><p>Nenhum produto cadastrado nesta categoria ainda.</p><p style="font-size:.8rem;margin-top:6px;opacity:.7">Adicione produtos pelo painel admin.</p></div>';
+    grid.innerHTML='<div class="empty-msg" style="grid-column:1/-1"><i class="fas fa-box-open"></i><p>Nenhum produto cadastrado nesta categoria ainda.</p><p style="font-size:.8rem;margin-top:8px;opacity:.7">Adicione produtos pelo painel admin.</p></div>';
   } else {
+    var imgArr=JSON.stringify(prods.map(function(x){return {type:'image',src:x.image,caption:x.name};}));
     grid.innerHTML=prods.map(function(p,i){
       var thumb=p.image?'<img src="'+p.image+'" alt="'+p.name+'">':'<i class="fas fa-image"></i>';
-      return '<div class="prod-card" onclick="openLbArr('+JSON.stringify(prods.map(function(x){return {type:'image',src:x.image,caption:x.name};})) +','+i+')">'+
-        '<div class="prod-thumb">'+thumb+'</div>'+
-        '<div class="prod-info"><h4>'+p.name+'</h4>'+(p.desc?'<span>'+p.desc+'</span>':'')+(p.price?'<div class="prod-price">R$ '+p.price+'</div>':'')+'</div>'+
+      return '<div class="cat-detail-card" onclick="openLbArr('+imgArr.replace(/"/g,'&quot;')+','+i+')">'+
+        '<div class="cat-detail-img">'+thumb+'</div>'+
+        '<div class="cat-detail-info"><h4>'+p.name+'</h4>'+(p.desc?'<span>'+p.desc+'</span>':'')+(p.price?'<div class="cat-detail-price">R$ '+p.price+'</div>':'')+'</div>'+
       '</div>';
     }).join('');
   }
-  document.getElementById('catModal').classList.add('open');
+  var page=document.getElementById('catDetail');
+  page.classList.add('open');
+  page.scrollTop=0;
   document.body.style.overflow='hidden';
 }
-function closeCatModal(e){
-  if(e&&e.target!==document.getElementById('catModal'))return;
-  document.getElementById('catModal').classList.remove('open');
+function closeCatDetail(){
+  document.getElementById('catDetail').classList.remove('open');
   document.body.style.overflow='';
 }
 
-function openGalModal(galId){
+function openGalDetail(galId){
   var d=getData();
   var gals=(d&&d.gallery&&d.gallery.length)?d.gallery:DEFAULT_GAL;
   var gal=gals.find(function(g){return g.id===galId;});
   if(!gal)return;
-  document.getElementById('galModalTitle').textContent=gal.title;
+  document.getElementById('galDetailTitle').textContent=gal.title;
   var photos=gal.photos||[];
-  document.getElementById('galModalCount').textContent=photos.length+' foto'+(photos.length!==1?'s':'');
-  var grid=document.getElementById('photoGrid');
+  document.getElementById('galDetailCount').textContent=photos.length+' foto'+(photos.length!==1?'s':'');
+  var grid=document.getElementById('galDetailGrid');
   if(!photos.length){
-    grid.innerHTML='<div class="empty-msg"><i class="fas fa-images"></i><p>Nenhuma foto neste álbum.</p></div>';
+    grid.innerHTML='<div class="empty-msg" style="grid-column:1/-1"><i class="fas fa-images"></i><p>Nenhuma foto neste álbum.</p></div>';
   } else {
-    var photoArr=JSON.stringify(photos.map(function(p){return {type:p.type||'image',src:p.src,caption:p.caption||''} ;}));
+    var photoArr=JSON.stringify(photos.map(function(p){return {type:p.type||'image',src:p.src,caption:p.caption||''};}));
     grid.innerHTML=photos.map(function(p,i){
       var isIg=p.type==='instagram';
-      var inner=isIg
-        ?'<iframe src="'+p.src+'" allowfullscreen style="width:100%;height:100%;border:none;pointer-events:none"></iframe>'
-        :'<img src="'+p.src+'" alt="'+( p.caption||'Foto')+'">';
-      return '<div class="photo-thumb" onclick="openLbArr('+photoArr.replace(/"/g,'&quot;')+','+i+')">'+ inner+'<div class="photo-caption">'+( p.caption||'')+'</div></div>';
+      var media=isIg
+        ?'<iframe src="'+p.src+'" allowfullscreen></iframe>'
+        :'<img src="'+p.src+'" alt="'+(p.caption||'Foto')+'">';
+      return '<div class="gal-detail-card" onclick="openLbArr('+photoArr.replace(/"/g,'&quot;')+','+i+')">'+
+        '<div class="gal-detail-media">'+media+'</div>'+
+        (p.caption?'<div class="gal-detail-caption">'+p.caption+'</div>':'')+
+      '</div>';
     }).join('');
   }
-  document.getElementById('galModal').classList.add('open');
+  var page=document.getElementById('galDetail');
+  page.classList.add('open');
+  page.scrollTop=0;
   document.body.style.overflow='hidden';
 }
-function closeGalModal(e){
-  if(e&&e.target!==document.getElementById('galModal'))return;
-  document.getElementById('galModal').classList.remove('open');
+function closeGalDetail(){
+  document.getElementById('galDetail').classList.remove('open');
   document.body.style.overflow='';
 }
 
@@ -764,7 +772,8 @@ function lbNav(dir){_lbIdx=(_lbIdx+dir+_lbPhotos.length)%_lbPhotos.length;showLb
 function closeLb(){document.getElementById('lbOverlay').classList.remove('open');document.getElementById('lbIframe').src='';}
 document.addEventListener('keydown',function(e){
   var lb=document.getElementById('lbOverlay');if(!lb.classList.contains('open'))return;
-  if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='Escape'){closeLb();closeCatDetail();closeGalDetail();}
 });
 document.getElementById('lbOverlay').addEventListener('click',function(e){if(e.target===this)closeLb();});
 
