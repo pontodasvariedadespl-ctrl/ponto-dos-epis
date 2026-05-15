@@ -595,7 +595,7 @@ function getData(){
 function init(){
   var d=getData();
   var cfg=(d&&d.config)?d.config:DEFAULT_CFG;
-  if(cfg.heroTitle){ document.getElementById('heroTitle').childNodes[0].nodeValue=cfg.heroTitle+' '; }
+  if(cfg.heroTitle){ var _ht=document.getElementById('heroTitle');if(_ht){var _sp=_ht.querySelector('span');_ht.textContent=cfg.heroTitle+' ';if(_sp)_ht.appendChild(_sp);} }
   if(cfg.heroSubtitle) document.getElementById('heroBadge').textContent=cfg.heroSubtitle;
   if(cfg.heroDesc) document.getElementById('heroDesc').innerHTML=''+cfg.heroDesc;
   if(cfg.aboutTitle) document.getElementById('aboutTitle').textContent=cfg.aboutTitle;
