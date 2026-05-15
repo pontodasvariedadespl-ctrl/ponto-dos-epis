@@ -793,6 +793,16 @@ function showConfigTab(tab){
         </div>
         <input type="hidden" id="logoData" value="${c.logoData||''}"/>
       </div>
+      <div class="form-group" style="margin-top:20px;padding:18px;background:#fff8e1;border:1.5px dashed #f59e0b;border-radius:12px">
+        <label style="color:#92400e;font-weight:700">🎄 Logo Sazonal — Seção Sobre <span style="font-size:.75rem;font-weight:400;color:#78350f">(opcional · substitui a logo principal apenas no card verde)</span></label>
+        <p style="font-size:.8rem;color:#92400e;margin:4px 0 12px">Use para datas especiais: Natal, Páscoa, Dia dos Pais, promoções etc. Deixe vazio para usar a logo principal.</p>
+        <div class="img-upload-area" onclick="triggerImg('aboutLogoFileInput')" style="border-color:#f59e0b"><i class="fas fa-snowflake"></i><p>Clique para enviar logo sazonal</p></div>
+        <input type="file" id="aboutLogoFileInput" accept="image/*" style="display:none" onchange="previewImg(this,'aboutLogoPreview','aboutLogoData')"/>
+        <div id="aboutLogoPreview" style="margin-top:10px;background:#1a1a2e;padding:14px;border-radius:8px;display:inline-block">
+          ${c.aboutLogoData?`<div class="img-preview-wrap"><img src="${c.aboutLogoData}" style="height:50px;object-fit:contain"/><button class="remove-img" onclick="clearAboutLogo()">×</button></div>`:'<span style="color:rgba(255,255,255,.4);font-size:.8rem">Sem logo sazonal — usa a logo principal</span>'}
+        </div>
+        <input type="hidden" id="aboutLogoData" value="${c.aboutLogoData||''}"/>
+      </div>
       <div style="background:#f8f9fa;border-radius:12px;padding:20px;margin-top:16px">
         <h4 style="margin-bottom:16px;color:#1a1a2e;font-size:.95rem">Tamanho da Logo por Local</h4>
         <div class="form-group">
@@ -848,6 +858,8 @@ function saveConfigSection(section){
   } else if(section==='visual'){
     const logoData=document.getElementById('logoData').value;
     if(logoData) d.config.logoData=logoData;
+    const aboutLogoData=document.getElementById('aboutLogoData')?.value||'';
+    d.config.aboutLogoData=aboutLogoData;
     d.config.logoSizeNav=parseInt(document.getElementById('cfgLogoNav').value)||44;
     d.config.logoSizeAbout=parseInt(document.getElementById('cfgLogoAbout').value)||60;
     d.config.logoSizeFooter=parseInt(document.getElementById('cfgLogoFooter').value)||50;
@@ -877,6 +889,11 @@ function closeModal(){
 
 // ── IMAGE HELPERS ──
 function triggerImg(id){ document.getElementById(id).click(); }
+
+function clearAboutLogo(){
+  document.getElementById('aboutLogoData').value='';
+  document.getElementById('aboutLogoPreview').innerHTML='<span style="color:rgba(255,255,255,.4);font-size:.8rem">Sem logo sazonal — usa a logo principal</span>';
+}
 
 function previewImg(input, previewId, dataId){
   const file=input.files[0]; if(!file) return;

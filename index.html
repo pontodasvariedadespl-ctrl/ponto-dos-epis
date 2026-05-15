@@ -30,7 +30,7 @@
   .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(14,58,26,.97);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.25);transition:var(--transition)}
   .navbar.scrolled{background:rgba(14,58,26,1);box-shadow:0 4px 30px rgba(0,0,0,.3)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .nav-logo img{height:48px;width:auto}
+  .nav-logo img{height:48px;width:auto;mix-blend-mode:screen}
   .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
   .nav-links a{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.85);transition:var(--transition);position:relative;padding-bottom:4px}
   .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--green-accent);transition:var(--transition)}
@@ -83,7 +83,7 @@
   .categories-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px}
   .cat-card{background:var(--white);border-radius:var(--radius);padding:0;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:var(--transition);position:relative;overflow:hidden;cursor:pointer}
   .cat-card:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(27,94,46,.2)}
-  .cat-cover-img{width:100%;height:160px;object-fit:cover;display:block}
+  .cat-cover-img{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;display:block;transition:var(--transition)}
   .cat-cover-placeholder{height:160px;background:linear-gradient(135deg,var(--green-mid),var(--green-light));display:flex;align-items:center;justify-content:center}
   .cat-card-body{padding:24px 20px}
   .cat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--green-mid),var(--green-light));opacity:0;transition:var(--transition);pointer-events:none}
@@ -94,6 +94,12 @@
   .cat-title{position:relative;z-index:1;font-size:1rem;font-weight:700;color:var(--green-dark);margin-bottom:6px;transition:var(--transition)}
   .cat-desc{position:relative;z-index:1;font-size:.8rem;color:var(--gray-text);line-height:1.5;transition:var(--transition)}
   .cat-link{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;color:var(--green-main);font-size:.8rem;font-weight:600;margin-top:10px;transition:var(--transition)}
+
+  .cat-card:hover .cat-cover-img{transform:scale(1.08)}
+  @media(max-width:768px){
+    .categories-grid{display:flex;overflow-x:auto;gap:16px;padding-bottom:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .cat-card{min-width:220px;max-width:220px;flex-shrink:0;scroll-snap-align:start}
+  }
 
   /* STATS */
   .stats{padding:80px 0;background:linear-gradient(135deg,var(--green-dark) 0%,var(--green-main) 100%);position:relative;overflow:hidden}
@@ -361,8 +367,24 @@
     <div class="stats-grid">
       <div class="stat-item reveal"><div class="stat-number" data-target="43000">43.000<span>+</span></div><div class="stat-label">Produtos em estoque</div></div>
       <div class="stat-item reveal"><div class="stat-number" data-target="14">14<span>+</span></div><div class="stat-label">Anos de experiência</div></div>
-      <div class="stat-item reveal"><div class="stat-number">8</div><div class="stat-label">Categorias de produtos</div></div>
+      <div class="stat-item reveal"><div class="stat-number" id="statCatsCount">8</div><div class="stat-label">Categorias de produtos</div></div>
       <div class="stat-item reveal"><div class="stat-number">100%</div><div class="stat-label">Comprometimento</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeria">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <span class="tag">Nossa Galeria</span>
+      <h2 class="section-title">Momentos da Ponto dos EPI's</h2>
+      <p class="section-subtitle">Clique em um álbum para ver as fotos completas</p>
+    </div>
+    <div class="gallery-grid" id="galGrid"></div>
+    <div class="gallery-cta reveal" style="margin-top:36px;text-align:center">
+      <a id="igMainLink" href="https://www.instagram.com/lojapontodosepis/" target="_blank" class="btn-insta">
+        <i class="fab fa-instagram"></i> Ver mais no Instagram
+      </a>
     </div>
   </div>
 </section>
@@ -398,22 +420,6 @@
           <li><i class="fas fa-check-circle"></i> Atendimento humano e próximo há 14 anos</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="gallery" id="galeria">
-  <div class="container">
-    <div class="gallery-header reveal">
-      <span class="tag">Nossa Galeria</span>
-      <h2 class="section-title">Momentos da Ponto dos EPI's</h2>
-      <p class="section-subtitle">Clique em um álbum para ver as fotos completas</p>
-    </div>
-    <div class="gallery-grid" id="galGrid"></div>
-    <div class="gallery-cta reveal" style="margin-top:36px;text-align:center">
-      <a id="igMainLink" href="https://www.instagram.com/lojapontodosepis/" target="_blank" class="btn-insta">
-        <i class="fab fa-instagram"></i> Ver mais no Instagram
-      </a>
     </div>
   </div>
 </section>
@@ -494,7 +500,6 @@
         <li><a href="#sobre">Sobre nós</a></li>
         <li><a href="#galeria">Galeria</a></li>
         <li><a href="#contato">Contato</a></li>
-        <li><a href="admin.html">Admin</a></li>
       </ul></div>
       <div class="footer-col"><h4>Categorias</h4><ul>
         <li><a href="#categorias">EPIs e Segurança</a></li>
@@ -511,7 +516,7 @@
       </ul></div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Ponto dos EPI's Ltda. Todos os direitos reservados.</p>
+      <p>© 2026 Ponto dos EPI's Ltda. Todos os direitos reservados.</p>
       <p><a href="https://lojapontodosepis.com.br">lojapontodosepis.com.br</a></p>
     </div>
   </div>
@@ -618,7 +623,8 @@ function init(){
     ['ttLink','ftTtLink'].forEach(function(id){var el=document.getElementById(id);if(el){el.href=cfg.tiktok;el.style.display='';} });
   }
   if(cfg.logoData){
-    ['navLogo','aboutLogo','footerLogo'].forEach(function(id){var el=document.getElementById(id);if(el)el.src=cfg.logoData;});
+    ['navLogo','footerLogo'].forEach(function(id){var el=document.getElementById(id);if(el){el.src=cfg.logoData;el.style.display='block';}});
+    var alEl=document.getElementById('aboutLogo');if(alEl){alEl.src=cfg.aboutLogoData||cfg.logoData;alEl.style.display='block';}
   }
   if(cfg.logoSizeNav){var nl=document.getElementById('navLogo');if(nl)nl.style.height=cfg.logoSizeNav+'px';}
   if(cfg.logoSizeAbout){var al=document.getElementById('aboutLogo');if(al)al.style.height=cfg.logoSizeAbout+'px';}
@@ -647,6 +653,7 @@ function renderCategories(cats){
     '</div>';
   }).join('');
   initReveal();
+  var sc=document.getElementById('statCatsCount');if(sc){sc.textContent=cats.length;}
 }
 
 function renderGallery(gals){
@@ -773,7 +780,37 @@ function initReveal(){
   } else {els.forEach(function(el){el.classList.add('visible');});}
 }
 
-document.addEventListener('DOMContentLoaded',function(){init();initReveal();});
+function animateCount(el){
+  var target=parseInt((el.getAttribute('data-target')||'0').replace(/[^0-9]/g,''));
+  if(!target)return;
+  var duration=2000,start=null;
+  var suffix=(el.innerHTML.match(/[^0-9,.]+$/)||[''])[0];
+  function step(ts){
+    if(!start)start=ts;
+    var progress=Math.min((ts-start)/duration,1);
+    var ease=1-Math.pow(1-progress,3);
+    var val=Math.round(ease*target);
+    var fmt=val>=1000?val.toLocaleString('pt-BR'):String(val);
+    el.innerHTML=fmt+suffix;
+    if(progress<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function initCounters(){
+  var counters=document.querySelectorAll('[data-target]');
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){animateCount(e.target);obs.unobserve(e.target);}
+      });
+    },{threshold:0.3});
+    counters.forEach(function(c){obs.observe(c);});
+  } else {
+    counters.forEach(function(c){animateCount(c);});
+  }
+}
+
+document.addEventListener('DOMContentLoaded',function(){init();initReveal();initCounters();});
 </script>
 </body>
 </html>
