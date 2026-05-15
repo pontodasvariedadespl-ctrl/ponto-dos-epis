@@ -636,7 +636,7 @@ function renderCategories(cats){
     var coverHtml=c.coverImg
       ?'<img class="cat-cover-img" src="'+c.coverImg+'" alt="'+c.name+'">'
       :'<div class="cat-cover-placeholder"><i class="'+( c.icon||'fas fa-box')+'" style="font-size:2.5rem;color:rgba(255,255,255,.5)"></i></div>';
-    return '<div class="cat-card reveal" onclick="openCatModal(''+c.id+'')">'+
+    return '<div class="cat-card reveal" onclick="openCatModal(\''+c.id+'\')">'+
       coverHtml+
       '<div class="cat-card-body">'+
         '<div class="cat-icon"><i class="'+(c.icon||'fas fa-box')+'"></i></div>'+
@@ -660,7 +660,7 @@ function renderGallery(gals){
     var igBtn=g.instagram
       ?'<a href="'+g.instagram+'" class="gallery-ig-btn" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-instagram"></i> Instagram</a>'
       :'';
-    return '<div class="gallery-item reveal" onclick="openGalModal(''+g.id+'')">'+
+    return '<div class="gallery-item reveal" onclick="openGalModal(\''+g.id+'\')">'+
       thumbHtml+
       '<div class="gallery-overlay">'+
         '<div class="gallery-item-title">'+g.title+'</div>'+
