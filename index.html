@@ -114,7 +114,7 @@
   /* ABOUT */
   .about{padding:96px 0;background:var(--white)}
   .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-  .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:#071c0e;height:420px;position:relative}
+  .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--green-mid),var(--green-light));height:420px;position:relative}
   .about-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
   .about-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border-radius:16px;padding:20px 24px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:14px}
   .about-badge-float .icon{width:48px;height:48px;background:var(--green-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--green-main)}
@@ -143,8 +143,9 @@
   .gallery-carousel .ig-card{min-width:200px;scroll-snap-align:start;flex-shrink:0}
   .ig-card-header{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,transparent 100%)}
   .ig-card-profile{display:flex;align-items:center;gap:8px}
-  .ig-card-avatar{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);object-fit:cover;flex-shrink:0}
-  .ig-card-avatar-ph{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);background:linear-gradient(135deg,#22c55e,#0e3a1a);flex-shrink:0}
+  .ig-avatar-wrap{width:26px;height:26px;min-width:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);overflow:hidden;flex-shrink:0;background:#0e3a1a}
+  .ig-avatar-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+  .ig-card-avatar-ph{width:26px;height:26px;min-width:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);background:linear-gradient(135deg,#22c55e,#0e3a1a);flex-shrink:0}
   .ig-card-username{color:#fff;font-size:.7rem;font-weight:700}
   .ig-card-ig-icon{color:rgba(255,255,255,.85);font-size:.95rem}
   .ig-media{width:100%;height:100%;object-fit:cover;display:block}
@@ -404,7 +405,7 @@
     <div class="gallery-header reveal">
       <a id="igHandleLink" href="https://www.instagram.com/lojapontodosepis/" target="_blank" class="ig-handle-chip"><i class="fab fa-instagram"></i> @pontodosepis.oficial</a>
       <h2 class="gallery-section-title">Confira nosso <em>Instagram</em></h2>
-      <p class="gallery-section-sub">Fique por dentro de novidades, promoções e dicas de segurança</p>
+      <p class="gallery-section-sub">Fique por dentro de novidades, promoções, dicas e melhores momentos!</p>
     </div>
     <div class="gallery-grid" id="galGrid"></div>
     <div class="gallery-carousel" id="galCarousel"></div>
@@ -705,7 +706,7 @@ function renderGallery(gals){
       ?'<img class="ig-media" src="'+g.coverImage+'" alt="'+g.title+'" loading="lazy">'
       :'<div class="ig-media-ph"></div>';
     var avatarHtml=avatarSrc
-      ?'<img class="ig-card-avatar" src="'+avatarSrc+'" alt="logo">'
+      ?'<div class="ig-avatar-wrap"><img src="'+avatarSrc+'" alt="logo"></div>'
       :'<div class="ig-card-avatar-ph"></div>';
     var tag=(g.tag||'GALERIA').toUpperCase();
     return '<div class="ig-card" onclick="openGalDetail(\''+g.id+'\')">'
