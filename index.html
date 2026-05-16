@@ -114,8 +114,8 @@
   /* ABOUT */
   .about{padding:96px 0;background:var(--white)}
   .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-  .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--green-mid),var(--green-light));height:420px;position:relative}
-  .about-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+  .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:#0e3a1a;height:420px;position:relative}
+  .about-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;mix-blend-mode:screen}
   .about-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border-radius:16px;padding:20px 24px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:14px}
   .about-badge-float .icon{width:48px;height:48px;background:var(--green-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--green-main)}
   .about-badge-float strong{display:block;font-size:1.3rem;font-weight:900;color:var(--green-dark)}
@@ -127,14 +127,14 @@
   .about-list li i{color:var(--green-light);font-size:1rem;flex-shrink:0;margin-top:3px}
 
   /* GALLERY - Instagram Feed */
-  .gallery{padding:96px 0;background:#0a0a0a}
+  .gallery{padding:96px 0;background:#f7f8f6}
   .gallery-header{text-align:center;margin-bottom:48px}
-  .ig-handle-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:8px 18px;color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600;margin-bottom:16px;text-decoration:none;transition:.2s}
-  .ig-handle-chip:hover{background:rgba(255,255,255,.14)}
+  .ig-handle-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.12);border-radius:100px;padding:8px 18px;color:var(--green-dark);font-size:.85rem;font-weight:600;margin-bottom:16px;text-decoration:none;transition:.2s}
+  .ig-handle-chip:hover{background:rgba(0,0,0,.1)}
   .ig-handle-chip i{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .gallery-section-title{color:#fff;font-size:2rem;font-weight:800;margin-bottom:8px}
+  .gallery-section-title{color:var(--green-dark);font-size:2rem;font-weight:800;margin-bottom:8px}
   .gallery-section-title em{font-style:normal;background:linear-gradient(135deg,#f09433,#dc2743);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .gallery-section-sub{color:rgba(255,255,255,.5);font-size:.95rem;margin-bottom:0}
+  .gallery-section-sub{color:var(--gray-text);font-size:.95rem;margin-bottom:0}
   .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
   .gallery-carousel{display:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .gallery-carousel::-webkit-scrollbar{display:none}
@@ -156,7 +156,7 @@
   .ig-card-actions{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.65);font-size:.88rem}
   .ig-card-actions .bm{margin-left:auto}
   .gallery-cta-block{text-align:center;margin-top:48px}
-  .gallery-cta-lead{color:rgba(255,255,255,.55);font-size:.95rem;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .gallery-cta-lead{color:var(--gray-text);font-size:.95rem;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:8px}
   .gallery-cta-lead i{font-size:1.1rem;background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
   .btn-insta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:var(--white);font-weight:700;font-size:1rem;padding:14px 32px;border-radius:100px;transition:var(--transition);box-shadow:0 4px 20px rgba(220,39,67,.35)}
   .btn-insta:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(220,39,67,.45)}
@@ -885,5 +885,11 @@ function initCounters(){
 
 document.addEventListener('DOMContentLoaded',function(){init();initReveal();initCounters();});
 </script>
+  <script>
+  (function(){
+    var V='20260516d';
+    try{if(localStorage.getItem('_pv')!==V){localStorage.setItem('_pv',V);location.reload(true);}}catch(e){}
+  })();
+  </script>
 </body>
 </html>
