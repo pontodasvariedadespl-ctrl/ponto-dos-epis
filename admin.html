@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Admin – Ponto dos EPI's</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -345,6 +348,7 @@ function doLogin(){
     sessionStorage.setItem('admin_ok','1');
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('adminApp').style.display='block';
+    updateSidebarLogo();
     showView('dashboard'); renderDash();
   } else {
     document.getElementById('loginErr').style.display='block';
@@ -876,6 +880,7 @@ function saveConfigSection(section){
     d.config.logoSizeFooter=parseInt(document.getElementById('cfgLogoFooter').value)||50;
   }
   saveData(d); toast('Configurações salvas! Atualize o site para ver as mudanças.');
+  updateSidebarLogo();
 }
 
 function changePassword(){
@@ -947,9 +952,16 @@ function toast(msg, type){
 }
 
 // ── INIT ──
+function updateSidebarLogo(){
+  var d=getData();
+  if(d&&d.config&&d.config.logoData){
+    var sL=document.querySelector('.sidebar-logo img');
+    if(sL){sL.src=d.config.logoData;sL.style.height=((d.config.logoSizeNav)||44)+'px';}
+  }
+}
 (function(){
-  // Init default data if empty
   if(!localStorage.getItem(SK)) saveData(defaultData());
+  updateSidebarLogo();
   if(sessionStorage.getItem('admin_ok')==='1'){
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('adminApp').style.display='block';

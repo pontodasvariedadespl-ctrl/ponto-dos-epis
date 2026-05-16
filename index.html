@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Ponto dos EPI's Ltda – Variedades para Todos</title>
 <meta name="description" content="Há 14 anos em Pontes e Lacerda-MT. EPIs, ferramentas, uniformes, limpeza, papelaria, casa, jardim e muito mais. Mais de 43.000 itens!">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,8 +114,8 @@
   /* ABOUT */
   .about{padding:96px 0;background:var(--white)}
   .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-  .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--green-mid),var(--green-light));height:420px;position:relative}
-  .about-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.18))}
+  .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:#071c0e;height:420px;position:relative}
+  .about-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
   .about-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border-radius:16px;padding:20px 24px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:14px}
   .about-badge-float .icon{width:48px;height:48px;background:var(--green-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--green-main)}
   .about-badge-float strong{display:block;font-size:1.3rem;font-weight:900;color:var(--green-dark)}
@@ -123,22 +126,37 @@
   .about-list li{display:flex;align-items:flex-start;gap:12px;font-size:.95rem;color:var(--gray-text);line-height:1.5}
   .about-list li i{color:var(--green-light);font-size:1rem;flex-shrink:0;margin-top:3px}
 
-  /* GALLERY */
-  .gallery{padding:96px 0;background:var(--gray-bg)}
-  .gallery-header{text-align:center}
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
-  .gallery-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:9/16;cursor:pointer;background:var(--green-dark);border:1.5px solid rgba(76,175,80,.55);box-shadow:0 0 12px rgba(76,175,80,.30),0 4px 18px rgba(0,0,0,.15);transition:box-shadow .3s,transform .3s}
-  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
-  .gallery-item iframe{width:100%;height:100%;border:none;pointer-events:none}
-  .gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,58,26,.9) 0%,transparent 55%);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:14px;opacity:0;transition:opacity .3s ease}
-  .gallery-item:hover img{transform:scale(1.06)}
-  .gallery-item:hover{box-shadow:0 0 22px rgba(76,175,80,.6),0 8px 28px rgba(0,0,0,.2)}
-  .gallery-item:hover .gallery-overlay{opacity:1}
-  .gallery-item-title{color:var(--white);font-size:.82rem;font-weight:700;line-height:1.3}
-  .gallery-item-count{color:rgba(255,255,255,.7);font-size:.72rem;margin-top:3px}
-  .gallery-ig-btn{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);color:#fff;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none;margin:6px 0 0;transition:.2s;white-space:nowrap}
-  .gallery-ig-btn:hover{opacity:.85}
-  .gallery-cta{text-align:center;margin-top:36px}
+  /* GALLERY - Instagram Feed */
+  .gallery{padding:96px 0;background:#0a0a0a}
+  .gallery-header{text-align:center;margin-bottom:48px}
+  .ig-handle-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:8px 18px;color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600;margin-bottom:16px;text-decoration:none;transition:.2s}
+  .ig-handle-chip:hover{background:rgba(255,255,255,.14)}
+  .ig-handle-chip i{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .gallery-section-title{color:#fff;font-size:2rem;font-weight:800;margin-bottom:8px}
+  .gallery-section-title em{font-style:normal;background:linear-gradient(135deg,#f09433,#dc2743);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .gallery-section-sub{color:rgba(255,255,255,.5);font-size:.95rem;margin-bottom:0}
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+  .gallery-carousel{display:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .gallery-carousel::-webkit-scrollbar{display:none}
+  .ig-card{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:9/16;cursor:pointer;background:#1a1a1a;transition:transform .2s}
+  .ig-card:hover{transform:scale(1.015)}
+  .gallery-carousel .ig-card{min-width:200px;scroll-snap-align:start;flex-shrink:0}
+  .ig-card-header{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,transparent 100%)}
+  .ig-card-profile{display:flex;align-items:center;gap:8px}
+  .ig-card-avatar{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);object-fit:cover;flex-shrink:0}
+  .ig-card-avatar-ph{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);background:linear-gradient(135deg,#22c55e,#0e3a1a);flex-shrink:0}
+  .ig-card-username{color:#fff;font-size:.7rem;font-weight:700}
+  .ig-card-ig-icon{color:rgba(255,255,255,.85);font-size:.95rem}
+  .ig-media{width:100%;height:100%;object-fit:cover;display:block}
+  .ig-media-ph{width:100%;height:100%;background:linear-gradient(135deg,#1a4731,#0e3a1a)}
+  .ig-card-footer{position:absolute;bottom:0;left:0;right:0;z-index:3;background:linear-gradient(to top,rgba(0,0,0,.88) 55%,transparent 100%);padding:14px 14px 16px}
+  .ig-card-tag{display:inline-flex;align-items:center;background:rgba(34,197,94,.18);border:1px solid rgba(34,197,94,.45);color:#4ade80;font-size:.62rem;font-weight:800;letter-spacing:.1em;padding:2px 8px;border-radius:4px;text-transform:uppercase;margin-bottom:6px}
+  .ig-card-caption{color:rgba(255,255,255,.9);font-size:.75rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:8px}
+  .ig-card-actions{display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.65);font-size:.88rem}
+  .ig-card-actions .bm{margin-left:auto}
+  .gallery-cta-block{text-align:center;margin-top:48px}
+  .gallery-cta-lead{color:rgba(255,255,255,.55);font-size:.95rem;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .gallery-cta-lead i{font-size:1.1rem;background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
   .btn-insta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:var(--white);font-weight:700;font-size:1rem;padding:14px 32px;border-radius:100px;transition:var(--transition);box-shadow:0 4px 20px rgba(220,39,67,.35)}
   .btn-insta:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(220,39,67,.45)}
 
@@ -276,11 +294,10 @@
     .hero-buttons{justify-content:center}.hero-counter{justify-content:center}
     .about-inner{grid-template-columns:1fr}.about-badge-float{right:0;bottom:-16px}
     .contact-inner{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;gap:32px}
-    .gallery-grid{grid-template-columns:repeat(3,1fr)}.dif-grid{grid-template-columns:1fr 1fr}
+    .gallery-grid{display:none}.gallery-carousel{display:flex}.dif-grid{grid-template-columns:1fr 1fr}
   }
   @media(max-width:480px){
     .dif-grid{grid-template-columns:1fr}.categories-grid{grid-template-columns:repeat(2,1fr)}
-    .gallery-grid{grid-template-columns:repeat(2,1fr)}
     .gal-detail-grid{grid-template-columns:repeat(2,1fr)}
   }
 </style>
@@ -385,14 +402,16 @@
 <section class="gallery" id="galeria">
   <div class="container">
     <div class="gallery-header reveal">
-      <span class="tag">Nossa Galeria</span>
-      <h2 class="section-title">Momentos da Ponto dos EPI's</h2>
-      <p class="section-subtitle">Clique em um álbum para ver as fotos completas</p>
+      <a id="igHandleLink" href="https://www.instagram.com/lojapontodosepis/" target="_blank" class="ig-handle-chip"><i class="fab fa-instagram"></i> @pontodosepis.oficial</a>
+      <h2 class="gallery-section-title">Confira nosso <em>Instagram</em></h2>
+      <p class="gallery-section-sub">Fique por dentro de novidades, promoções e dicas de segurança</p>
     </div>
     <div class="gallery-grid" id="galGrid"></div>
-    <div class="gallery-cta reveal" style="margin-top:36px;text-align:center">
+    <div class="gallery-carousel" id="galCarousel"></div>
+    <div class="gallery-cta-block reveal">
+      <p class="gallery-cta-lead"><i class="fab fa-instagram"></i> Siga nosso Instagram e fique por dentro de tudo!</p>
       <a id="igMainLink" href="https://www.instagram.com/lojapontodosepis/" target="_blank" class="btn-insta">
-        <i class="fab fa-instagram"></i> Ver mais no Instagram
+        <i class="fab fa-instagram"></i> IR PARA O INSTAGRAM
       </a>
     </div>
   </div>
@@ -629,7 +648,7 @@ function init(){
   if(cfg.horaSemana){var e4=document.getElementById('ctaHoraSemana');if(e4)e4.textContent=cfg.horaSemana;}
   if(cfg.horaSabado){var e5=document.getElementById('ctaHoraSabado');if(e5)e5.textContent=cfg.horaSabado;}
   if(cfg.instagram){
-    ['igLink','ftIgLink','igMainLink'].forEach(function(id){var el=document.getElementById(id);if(el)el.href=cfg.instagram;});
+    ['igLink','ftIgLink','igMainLink','igHandleLink'].forEach(function(id){var el=document.getElementById(id);if(el)el.href=cfg.instagram;});
   }
   if(cfg.facebook){
     ['fbLink','ftFbLink'].forEach(function(id){var el=document.getElementById(id);if(el)el.href=cfg.facebook;});
@@ -673,27 +692,45 @@ function renderCategories(cats){
 
 function renderGallery(gals){
   var grid=document.getElementById('galGrid');
-  if(!gals||!gals.length){grid.innerHTML='<div class="empty-msg"><p>Nenhum álbum cadastrado.</p></div>';return;}
-  grid.innerHTML=gals.map(function(g){
-    var count=g.photos?g.photos.length:0;
-    var thumbHtml=g.coverImage
-      ?'<img src="'+g.coverImage+'" alt="'+g.title+'">'
-      :'';
-    var igBtn=g.instagram
-      ?'<a href="'+g.instagram+'" class="gallery-ig-btn" target="_blank" onclick="event.stopPropagation()"><i class="fab fa-instagram"></i> Instagram</a>'
-      :'';
-    return '<div class="gallery-item reveal" onclick="openGalDetail(\''+g.id+'\')">'+
-      thumbHtml+
-      '<div class="gallery-overlay">'+
-        '<div class="gallery-item-title">'+g.title+'</div>'+
-        '<div class="gallery-item-count">'+count+' foto'+(count!==1?'s':'')+'</div>'+
-        igBtn+
-      '</div>'+
-    '</div>';
-  }).join('');
+  var carousel=document.getElementById('galCarousel');
+  if(!gals||!gals.length){
+    if(grid)grid.innerHTML='<div class="empty-msg"><p>Nenhum álbum cadastrado.</p></div>';
+    if(carousel)carousel.innerHTML='';
+    return;
+  }
+  var d2=getData();var cfg2=d2&&d2.config?d2.config:{};
+  var avatarSrc=cfg2.logoData||'';
+  function makeIgCard(g){
+    var mediaHtml=g.coverImage
+      ?'<img class="ig-media" src="'+g.coverImage+'" alt="'+g.title+'" loading="lazy">'
+      :'<div class="ig-media-ph"></div>';
+    var avatarHtml=avatarSrc
+      ?'<img class="ig-card-avatar" src="'+avatarSrc+'" alt="logo">'
+      :'<div class="ig-card-avatar-ph"></div>';
+    var tag=(g.tag||'GALERIA').toUpperCase();
+    return '<div class="ig-card" onclick="openGalDetail(\''+g.id+'\')">'
+      +'<div class="ig-card-header">'
+        +'<div class="ig-card-profile">'+avatarHtml+'<span class="ig-card-username">@pontodosepis.oficial</span></div>'
+        +'<i class="fab fa-instagram ig-card-ig-icon"></i>'
+      +'</div>'
+      +mediaHtml
+      +'<div class="ig-card-footer">'
+        +'<div class="ig-card-tag">'+tag+'</div>'
+        +'<div class="ig-card-caption">'+g.title+'</div>'
+        +'<div class="ig-card-actions">'
+          +'<span><i class="far fa-heart"></i></span>'
+          +'<span><i class="far fa-comment"></i></span>'
+          +'<span><i class="far fa-paper-plane"></i></span>'
+          +'<span class="bm"><i class="far fa-bookmark"></i></span>'
+        +'</div>'
+      +'</div>'
+    +'</div>';
+  }
+  var html=gals.map(makeIgCard).join('');
+  if(grid)grid.innerHTML=html;
+  if(carousel)carousel.innerHTML=gals.map(makeIgCard).join('');
   initReveal();
 }
-
 function openCatDetail(catId){
   var d=getData();
   var cats=(d&&d.categories&&d.categories.length)?d.categories:DEFAULT_CATS;
