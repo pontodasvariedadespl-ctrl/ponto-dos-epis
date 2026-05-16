@@ -514,6 +514,7 @@ function openAddProductModal(catId){
     <div class="modal-body">
       <div class="form-group"><label>Nome do Produto</label><input id="pName" placeholder="Ex: Capacete de Segurança CA"/></div>
       <div class="form-group"><label>Descrição</label><textarea id="pDesc" placeholder="Detalhes do produto..."></textarea></div>
+      <div class="form-group"><label>Pontos Fortes <small style="color:#999">(um por linha)</small></label><textarea id="pFeatures" rows="4" placeholder="Casca em polietileno (PEAD)&#10;Suspensão com carneira&#10;Ajuste por catraca&#10;Leve e confortável"></textarea></div>
       <div class="form-group"><label>Preço (opcional)</label><input id="pPrice" placeholder="Ex: 29,90"/></div>
       <div class="form-group"><label>Foto do Produto</label>
         <div class="img-upload-area" onclick="triggerImg('pImgInput')"><i class="fas fa-camera"></i><p>Clique para adicionar foto</p></div>
@@ -538,6 +539,7 @@ function openEditProductModal(catId, prodId){
     <div class="modal-body">
       <div class="form-group"><label>Nome</label><input id="pName" value="${p.name||''}"/></div>
       <div class="form-group"><label>Descrição</label><textarea id="pDesc">${p.desc||''}</textarea></div>
+      <div class="form-group"><label>Pontos Fortes <small style="color:#999">(um por linha)</small></label><textarea id="pFeatures" rows="4">${p.features||''}</textarea></div>
       <div class="form-group"><label>Preço (opcional)</label><input id="pPrice" value="${p.price||''}"/></div>
       <div class="form-group"><label>Foto</label>
         <div class="img-upload-area" onclick="triggerImg('pImgInput')"><i class="fas fa-camera"></i><p>Trocar foto</p></div>
@@ -560,6 +562,7 @@ function saveProduct(catId, prodId){
     id:prodId||uid(),
     name:document.getElementById('pName').value.trim(),
     desc:document.getElementById('pDesc').value.trim(),
+    features:document.getElementById('pFeatures').value.trim(),
     price:document.getElementById('pPrice').value.trim(),
     image:document.getElementById('pImgData').value||null
   };

@@ -112,7 +112,7 @@
   .about{padding:96px 0;background:var(--white)}
   .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
   .about-img-box{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(135deg,var(--green-mid),var(--green-light));height:420px;position:relative}
-  .about-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 16px 32px rgba(0,0,0,.3))}
+  .about-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,.18))}
   .about-badge-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border-radius:16px;padding:20px 24px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:flex;align-items:center;gap:14px}
   .about-badge-float .icon{width:48px;height:48px;background:var(--green-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--green-main)}
   .about-badge-float strong{display:block;font-size:1.3rem;font-weight:900;color:var(--green-dark)}
@@ -220,17 +220,25 @@
   .detail-content{padding:32px 28px;max-width:1200px;margin:0 auto}
 
   /* Category cards 1:1 */
-  .cat-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px}
-  .cat-detail-card{cursor:pointer;transition:.2s}
-  .cat-detail-card:hover{transform:translateY(-4px)}
-  .cat-detail-img{aspect-ratio:1/1;border-radius:16px;overflow:hidden;background:#eef0f2;box-shadow:0 4px 18px rgba(0,0,0,.10);display:flex;align-items:center;justify-content:center;transition:box-shadow .25s}
-  .cat-detail-card:hover .cat-detail-img{box-shadow:0 14px 36px rgba(14,120,50,.18)}
-  .cat-detail-img img{width:100%;height:100%;object-fit:cover}
-  .cat-detail-img i{font-size:3rem;color:#bbb}
-  .cat-detail-info{margin-top:12px;padding:0 4px}
-  .cat-detail-info h4{font-size:1rem;font-weight:700;color:var(--green-dark);margin-bottom:3px}
-  .cat-detail-info span{font-size:.82rem;color:var(--gray-text);line-height:1.5}
-  .cat-detail-price{margin-top:6px;font-size:1rem;font-weight:800;color:var(--green-main)}
+  .cat-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;align-items:start}
+  .cat-detail-card{background:#fff;border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;box-shadow:0 3px 18px rgba(0,0,0,.09)}
+  .cat-detail-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,.14)}
+  .cat-prod-header{padding:14px 18px 12px}
+  .cat-prod-header h4{font-size:1rem;font-weight:800;line-height:1.3;margin:0}
+  .cat-prod-img{width:100%;aspect-ratio:1/1;overflow:hidden;background:#f5f5f5;display:flex;align-items:center;justify-content:center}
+  .cat-prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+  .cat-detail-card:hover .cat-prod-img img{transform:scale(1.05)}
+  .cat-prod-img i{font-size:3.5rem;color:#ccc}
+  .cat-prod-body{padding:14px 18px 18px}
+  .cat-prod-desc{font-size:.82rem;color:#555;line-height:1.55;margin-bottom:12px}
+  .cat-prod-features{list-style:none;display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
+  .cat-prod-features li{font-size:.8rem;color:#333;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+  .cat-prod-features li i{font-size:.75rem;flex-shrink:0;margin-top:3px}
+  .cat-detail-price{margin-top:10px;font-size:1rem;font-weight:800;color:var(--green-main)}
+  @media(max-width:600px){
+    .cat-detail-grid{display:flex;overflow-x:auto;gap:16px;padding:4px 20px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;grid-template-columns:unset}
+    .cat-detail-card{min-width:260px;max-width:260px;flex-shrink:0;scroll-snap-align:start}
+  }
 
   /* Gallery cards 9:16 */
   .gal-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px}
@@ -273,7 +281,7 @@
   @media(max-width:480px){
     .dif-grid{grid-template-columns:1fr}.categories-grid{grid-template-columns:repeat(2,1fr)}
     .gallery-grid{grid-template-columns:repeat(2,1fr)}
-    .gal-detail-grid{grid-template-columns:repeat(2,1fr)}.cat-detail-grid{grid-template-columns:repeat(2,1fr)}
+    .gal-detail-grid{grid-template-columns:repeat(2,1fr)}
   }
 </style>
 </head>
@@ -699,11 +707,24 @@ function openCatDetail(catId){
     grid.innerHTML='<div class="empty-msg" style="grid-column:1/-1"><i class="fas fa-box-open"></i><p>Nenhum produto cadastrado nesta categoria ainda.</p><p style="font-size:.8rem;margin-top:8px;opacity:.7">Adicione produtos pelo painel admin.</p></div>';
   } else {
     var imgArr=JSON.stringify(prods.map(function(x){return {type:'image',src:x.image,caption:x.name};}));
+    var COLORS=[
+      {b:'#f97316',t:'#ea6c0a'},{b:'#3b82f6',t:'#1d4ed8'},{b:'#6366f1',t:'#4f46e5'},
+      {b:'#f59e0b',t:'#b45309'},{b:'#ef4444',t:'#dc2626'},{b:'#22c55e',t:'#15803d'},
+      {b:'#a855f7',t:'#9333ea'},{b:'#14b8a6',t:'#0f766e'},{b:'#ec4899',t:'#db2777'}
+    ];
     grid.innerHTML=prods.map(function(p,i){
-      var thumb=p.image?'<img src="'+p.image+'" alt="'+p.name+'">':'<i class="fas fa-image"></i>';
-      return '<div class="cat-detail-card" onclick="openLbArr('+imgArr.replace(/"/g,'&quot;')+','+i+')">'+
-        '<div class="cat-detail-img">'+thumb+'</div>'+
-        '<div class="cat-detail-info"><h4>'+p.name+'</h4>'+(p.desc?'<span>'+p.desc+'</span>':'')+(p.price?'<div class="cat-detail-price">R$ '+p.price+'</div>':'')+'</div>'+
+      var c=COLORS[i%COLORS.length];
+      var thumb=p.image?'<img src="'+p.image+'" alt="'+p.name+'">':'<i class="fas fa-box-open"></i>';
+      var feats=(p.features||'').split('\n').filter(function(f){return f.trim();})
+        .map(function(f){return '<li><i class="fas fa-check-circle" style="color:'+c.b+'"></i>'+f.trim()+'</li>';}).join('');
+      return '<div class="cat-detail-card" onclick="openLbArr('+imgArr.replace(/"/g,'&quot;')+','+i+')" style="border-top:4px solid '+c.b+'">'+
+        '<div class="cat-prod-header"><h4 style="color:'+c.t+'">'+p.name+'</h4></div>'+
+        '<div class="cat-prod-img">'+thumb+'</div>'+
+        '<div class="cat-prod-body">'+
+          (p.desc?'<p class="cat-prod-desc">'+p.desc+'</p>':'')+
+          (feats?'<ul class="cat-prod-features">'+feats+'</ul>':'')+
+          (p.price?'<div class="cat-detail-price">R$ '+p.price+'</div>':'')+
+        '</div>'+
       '</div>';
     }).join('');
   }
